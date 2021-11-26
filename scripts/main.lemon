@@ -1,0 +1,194 @@
+global s16 overworld.scrollx
+global s16 overworld.scrolly
+global u8 overworld.backgroundsel
+global u8 overworld.chardirection
+global u8 overworld.directionmode
+global u8 overworld.charmoving
+global u8 overworld.charanimcounter
+global u8 overworld.charanimframe
+global u8 overworld.debug
+global u8 overworld.charspeed
+global u8 overworld.charanimspeed
+global u8 overworld.music
+
+function void DataSelect.drawCustomPlanes()
+{
+		// Change character speed depending on if B is held or not
+		if (Input.buttonDown(0x04))
+		{
+			overworld.charspeed = 4
+			overworld.charanimspeed = 5
+		}
+		else
+		{
+			overworld.charspeed = 2
+			overworld.charanimspeed = 10
+		}
+		// Move the terrain and change character direction
+		if (Input.buttonDown(0x00))
+		{
+			overworld.scrolly = overworld.scrolly + overworld.charspeed
+			overworld.chardirection = 0
+		}
+		else if (Input.buttonDown(0x01))
+		{
+			overworld.scrolly = overworld.scrolly - overworld.charspeed
+			overworld.chardirection = 1
+		}
+		if (Input.buttonDown(0x02))
+		{
+			overworld.scrollx = overworld.scrollx + overworld.charspeed
+			overworld.chardirection = 2
+		}
+		else if (Input.buttonDown(0x03))
+		{
+			overworld.scrollx = overworld.scrollx - overworld.charspeed
+			overworld.chardirection = 3
+		}
+		// Check if character is moving; this is used for walk animation
+		if (Input.buttonDown(0x00) || Input.buttonDown(0x01) || Input.buttonDown(0x02) || Input.buttonDown(0x03))
+		{
+			overworld.charmoving = 1
+		}
+		else
+		{
+			overworld.charmoving = 0
+			overworld.charanimcounter = 0
+			overworld.charanimframe = 0
+		}
+		// If it is, add 1 to overworld.charanimcounter for every frame the character is moving
+		if (overworld.charmoving == 1)
+		{
+			++overworld.charanimcounter
+		}
+		// If overworld.charanimcounter is above 10, reset the variable and add 1 to overworld.charanimframe
+		if (overworld.charanimcounter > overworld.charanimspeed)
+		{
+			overworld.charanimcounter = 0
+			++overworld.charanimframe
+		}
+		// If overworld.charanimframe is above 3, reset it to allow for proper looping of the walk animation
+		if (overworld.charanimframe > 3)
+		{
+			overworld.charanimframe = 0
+		}
+		// Check for if multiple D-Pad buttons are held and if so, change overworld.chardirection to special diagonal direction
+		if (overworld.directionmode == 1)
+		{
+			if (Input.buttonDown(0x00) && Input.buttonDown(0x02))
+			{
+				overworld.chardirection = 4
+			}
+			else if (Input.buttonDown(0x00) && Input.buttonDown(0x03))
+			{
+				overworld.chardirection = 5
+			}
+			else if (Input.buttonDown(0x01) && Input.buttonDown(0x02))
+			{
+				overworld.chardirection = 6
+			}
+			else if (Input.buttonDown(0x01) && Input.buttonDown(0x03))
+			{
+				overworld.chardirection = 7
+			}
+		}
+		// Return to AIR menu if START is pressed
+		if (control.pad1.pressed & CONTROL_START)
+		{
+			Game.returnToMainMenu()
+		}
+		// Draw the terrain
+        Renderer.drawCustomSprite("utlike_terrain", overworld.scrollx, overworld.scrolly, 0, 0x40, 0xE000)
+		// Draw terrain 2
+		Renderer.drawCustomSprite("utlike_terrain_2", overworld.scrollx, overworld.scrolly, 0, 0x40, 0xF200)
+		// Draw the background behind the terrain
+		if (overworld.backgroundsel == 0)
+		{
+			Renderer.drawCustomSprite("background_0", 0, 0, 0, 0x40, 0xD000)
+		}
+		else if (overworld.backgroundsel == 1)
+		{
+			Renderer.drawCustomSprite("background_1", 0, 0, 0, 0x40, 0xD000)
+		}
+		// Character in idle
+		if (overworld.chardirection == 0 && overworld.charanimframe == 0 || overworld.chardirection == 0 && overworld.charanimframe == 2)
+		{
+			Renderer.drawCustomSprite("char_up", 200, 112, 0, 0x40, 0xF000)
+		}
+		else if (overworld.chardirection == 1 && overworld.charanimframe == 0 || overworld.chardirection == 1 && overworld.charanimframe == 2)
+		{
+			Renderer.drawCustomSprite("char_down", 200, 112, 0, 0x40, 0xF000)
+		}
+		else if (overworld.chardirection == 2 && overworld.charanimframe == 0 || overworld.chardirection == 2 && overworld.charanimframe == 2)
+		{
+			Renderer.drawCustomSprite("char_left", 200, 112, 0, 0x40, 0xF000)
+		}
+		else if (overworld.chardirection == 3 && overworld.charanimframe == 0 || overworld.chardirection == 3 && overworld.charanimframe == 2)
+		{
+			Renderer.drawCustomSprite("char_right", 200, 112, 0, 0x40, 0xF000)
+		}
+		else if (overworld.chardirection == 4)
+		{
+			Renderer.drawCustomSprite("char_upleft", 200, 112, 0, 0x40, 0xF000)
+		}
+		else if (overworld.chardirection == 5)
+		{
+			Renderer.drawCustomSprite("char_upright", 200, 112, 0, 0x40, 0xF000)
+		}
+		else if (overworld.chardirection == 6)
+		{
+			Renderer.drawCustomSprite("char_downleft", 200, 112, 0, 0x40, 0xF000)
+		}
+		else if (overworld.chardirection == 7)
+		{
+			Renderer.drawCustomSprite("char_downright", 200, 112, 0, 0x40, 0xF000)
+		}
+		// Frame 1 of walk animation
+		if (overworld.chardirection == 0 && overworld.charanimframe == 1)
+		{
+			Renderer.drawCustomSprite("char_up_2", 200, 112, 0, 0x40, 0xF000)
+		}
+		else if (overworld.chardirection == 1 && overworld.charanimframe == 1)
+		{
+			Renderer.drawCustomSprite("char_down_2", 200, 112, 0, 0x40, 0xF000)
+		}
+		else if (overworld.chardirection == 2 && overworld.charanimframe == 1)
+		{
+			Renderer.drawCustomSprite("char_left_2", 200, 112, 0, 0x40, 0xF000)
+		}
+		else if (overworld.chardirection == 3 && overworld.charanimframe == 1)
+		{
+			Renderer.drawCustomSprite("char_right_2", 200, 112, 0, 0x40, 0xF000)
+		}
+		// Frame 3 of walk animation
+		if (overworld.chardirection == 0 && overworld.charanimframe == 3)
+		{
+			Renderer.drawCustomSprite("char_up_3", 200, 112, 0, 0x40, 0xF000)
+		}
+		else if (overworld.chardirection == 1 && overworld.charanimframe == 3)
+		{
+			Renderer.drawCustomSprite("char_down_3", 200, 112, 0, 0x40, 0xF000)
+		}
+		else if (overworld.chardirection == 2 && overworld.charanimframe == 3)
+		{
+			Renderer.drawCustomSprite("char_left_3", 200, 112, 0, 0x40, 0xF000)
+		}
+		else if (overworld.chardirection == 3 && overworld.charanimframe == 3)
+		{
+			Renderer.drawCustomSprite("char_right_3", 200, 112, 0, 0x40, 0xF000)
+		}
+		// Debugging stuff
+		if (overworld.debug == 1)
+		System.writeDisplayLine(stringformat("Scroll X %x Scroll Y %x Charmoving %x Animcounter %x Animframe %x Direction %x SPD %x AnimSPD %x", overworld.scrollx, overworld.scrolly, overworld.charmoving, overworld.charanimcounter, overworld.charanimframe, overworld.chardirection, overworld.charspeed, overworld.charanimspeed))
+}
+function void DataSelect.setup()
+{
+	if (overworld.music == 0)
+	{
+		Audio.playAudio("overworld_00")
+	}
+	else if (overworld.music == 1)
+	{
+		Audio.playAudio("overworld_01")
+	}
+}
