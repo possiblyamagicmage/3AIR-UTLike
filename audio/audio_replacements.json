@@ -1,0 +1,6 @@
+{
+	// A CYBER'S WORLD?
+	"overworld_00": { "File": "cyber.ogg", "Type": "Music" },
+	// GFZ2
+	"overworld_01": { "File": "O_GFZ2.ogg", "Type": "Music", "LoopStart": "340144" }
+}
