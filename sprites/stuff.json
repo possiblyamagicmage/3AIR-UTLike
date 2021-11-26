@@ -1,0 +1,22 @@
+{
+	"utlike_terrain":  { "File": "terrain.png", "Rect": "0,0,680,260", "Center": "0,0" },
+	"utlike_terrain_2":  { "File": "terrain_2.png", "Rect": "0,0,680,260", "Center": "0,0" },
+	"background_0":  { "File": "background_0.png", "Rect": "0,0,400,224", "Center": "0,0" },
+	"background_1":  { "File": "background_1.png", "Rect": "0,0,400,224", "Center": "0,0" },
+	"char_up":  { "File": "frisk_spritesheet.png", "Rect": "5,104,19,37", "Center": "9,18" },
+	"char_up_2":  { "File": "frisk_spritesheet.png", "Rect": "34,104,19,37", "Center": "9,17" },
+	"char_up_3":  { "File": "frisk_spritesheet.png", "Rect": "92,104,19,37", "Center": "9,17" },
+	"char_down":  { "File": "frisk_spritesheet.png", "Rect": "5,11,19,37", "Center": "9,18" },
+	"char_down_2":  { "File": "frisk_spritesheet.png", "Rect": "34,11,19,37", "Center": "9,17" },
+	"char_down_3":  { "File": "frisk_spritesheet.png", "Rect": "92,11,19,37", "Center": "9,17" },
+	"char_left":  { "File": "frisk_spritesheet.png", "Rect": "5,58,19,37", "Center": "9,18" },
+	"char_left_2":  { "File": "frisk_spritesheet.png", "Rect": "34,58,19,37", "Center": "9,18" },
+	"char_left_3":  { "File": "frisk_spritesheet.png", "Rect": "92,58,19,37", "Center": "9,18" },
+	"char_right":  { "File": "frisk_spritesheet.png", "Rect": "5,151,19,37", "Center": "9,18" },
+	"char_right_2":  { "File": "frisk_spritesheet.png", "Rect": "34,151,19,37", "Center": "9,18" },
+	"char_right_3":  { "File": "frisk_spritesheet.png", "Rect": "92,151,19,37", "Center": "9,18" },
+	"char_upleft":  { "File": "frisk_spritesheet.png", "Rect": "5,104,19,37", "Center": "9,18" },
+	"char_upright":  { "File": "frisk_spritesheet.png", "Rect": "5,104,19,37", "Center": "9,18" },
+	"char_downleft":  { "File": "frisk_spritesheet.png", "Rect": "5,11,19,37", "Center": "9,18" },
+	"char_downright":  { "File": "frisk_spritesheet.png", "Rect": "5,11,19,37", "Center": "9,18" }
+}
