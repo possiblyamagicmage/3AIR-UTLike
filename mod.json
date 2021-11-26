@@ -1,0 +1,82 @@
+{
+	"Metadata":
+	{
+		"Name": "UTLike",
+		"Author": "your mmom",
+		"Description": "Test Mod",
+		"URL": "https://sonic3air.org/",
+		"ModVersion": "1.984",
+		"GameVersion": "21.09.28.0"
+	},
+	"Settings":
+	{
+		"Background":
+		[
+			
+			{
+				"InternalName": "overworld.bgsel",
+				"DisplayName": "Background",
+				"Category": "Visuals",
+				"Variable": "overworld.backgroundsel",
+				"DefaultValue": "0",
+				"Options":
+				{
+
+					"0": "Checkerboard",
+					"1": "None"
+				}
+			}
+		],
+		"Direction":
+		[
+			{
+				"InternalName": "overworld.4dir",
+				"DisplayName": "Directions Mode",
+				"Category": "Visuals",
+				"Variable": "overworld.directionmode",
+				"DefaultValue": "0",
+				"Options":
+				{
+
+					"0": "4 Directions",
+					"1": "8 Directions"
+				}
+			}
+		],
+		"Debug":
+		[
+			{
+				"InternalName": "overworld.debug",
+				"DisplayName": "Position Viewer",
+				"Category": "Technical",
+				"Variable": "overworld.debug",
+				"DefaultValue": "0",
+				"Options":
+				{
+
+					"0": "No Pos. View",
+					"1": "Pos. View"
+				}
+			}
+		],
+		"Music":
+		[
+			{
+				"InternalName": "overworld.music",
+				"DisplayName": "Music Selection",
+				"Category": "Audio",
+				"Variable": "overworld.music",
+				"DefaultValue": "0",
+				"Options":
+				{
+
+					"0": "A CYBER'S WORLD? - Deltarune Chapter 2",
+					"1": "Greenflower Zone Act 2 - SRB2",
+					"2": "Mystic Cave 2P - Sonic 2",
+					"3": "Evening Star - Knuckles' Chaotix",
+					"4": "Launch Base Zone Act 2 - Sonic 3 Prototype"
+				}
+			}
+		]
+	}
+}
